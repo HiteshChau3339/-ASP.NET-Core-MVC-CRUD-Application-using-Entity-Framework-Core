@@ -1,0 +1,32 @@
+﻿@model List<Employee>
+<h1>Employee List Model</h1>
+<table class="table table-striped">
+    @foreach(var emp in Model)
+    {
+        <tr>
+            <td>@emp.EmpID</td>
+            <td>@emp.EmpName</td>
+            <td>@emp.EmpGender</td>
+            <td>@emp.Email</td>   
+            <td>
+                <form method="post">
+                    <input type="hidden" name="EmpID" value="@emp.EmpID"/>
+                    <button type="submit" class="btn btn-primary" asp-action="AddEditEmp" asp-controller="Employee">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="empID" value="@emp.EmpID" />
+                    <button type="submit" class="btn btn-danger" asp-action="DeleteEmp" asp-controller="Employee">Delete</button>
+                </form>
+            </td>
+            <td></td>
+        </tr>
+
+    }
+</table>
+
+@if (ViewBag.error != null)
+{
+    <h1>@ViewBag.error</h1>
+}
